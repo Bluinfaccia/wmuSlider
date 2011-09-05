@@ -12,14 +12,14 @@
 		
 		var defaults = {
 			autoplay: 			false,
-			autoplaySpeed: 		4000,
-			transitionSpeed: 	400,
-			showControlNav: 	true,
-			showDirectionNav: 	true,
-			showLoading: 		true,
-			loadingText: 		'Loading...',
-			prevText: 			'Previous',
-			nextText: 			'Next'
+			autoplaySpeed:		4000,
+			transitionSpeed:	400,
+			showControlNav:		true,
+			showDirectionNav:	true,
+			showLoading:		true,
+			loadingText:		'Loading...',
+			prevText:			'Previous',
+			nextText:			'Next'
 		};
 		var options = $.extend(defaults, options);
 		
