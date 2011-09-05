@@ -9,7 +9,9 @@
 
 ;(function($) {
     $.fn.wmuSlider = function(options) {
-        
+ 
+         /* Default Options
+        ================================================== */       
         var defaults = {
             autoplay: false,
             autoplaySpeed: 4000,
@@ -25,7 +27,8 @@
         
         return this.each(function() {
         
-            // Variables
+            /* Variables
+            ================================================== */
             var currentIndex;
             var slider = $(this);
             var sliderWidth;
@@ -37,40 +40,10 @@
             var sliderControl;
             var resizeInterval = 400;
             var autoplayTimeout;
+
             
-            // Default CSS
-            slider.css({
-                position: 'relative',
-                overflow: 'hidden'
-            });
-            strip.css({
-                position: 'absolute',
-                height: '100%'
-            });
-            slides.css({
-                position: 'relative',
-                float: 'left',
-                height: '100%'
-            });
-            
-            // Resize Slider
-            var resize = function(){
-                sliderWidth = slider.width();
-                strip.css({
-                    left: -currentIndex * sliderWidth,
-                    width: sliderWidth * slidesCount
-                });
-                slides.css({
-                    width: sliderWidth
-                });
-                var slide = $(slides[currentIndex]);
-                var img = slide.find('img');
-                slider.css({
-                    height: img.height()
-                });            
-            };
-            
-            // Load Slide
+            /* Slide
+            ================================================== */
             var loadSlide = function(i) {                
                 var slide = $(slides[i]);
                 var img = slide.find('img');
@@ -85,9 +58,11 @@
                 
                     // Load Image
                     if (img) {
+                        // Check if we need to dynamically load the image
                         if (img.attr('data-src')) {                    
                             img.css('opacity', 0);
                             img.load(function() {
+                                // Animate the slider height to the image height
                                 slider.animate({ height:img.height() }, options.transitionSpeed, function() {
                                     img.animate({ opacity:1 }, options.transitionSpeed, function() {
                                         $('.muLoading').remove();
@@ -95,7 +70,8 @@
                                 });
                             });
                             img.attr('src', img.attr('data-src'));
-                            img.removeAttr('data-src');                    
+                            img.removeAttr('data-src');
+                        // Image is already inline                   
                         } else {
                             slider.animate({ height:img.height() }, options.transitionSpeed);
                         }
@@ -113,7 +89,9 @@
                 });
             };
             
-            // Swipe
+            
+            /* Touch Gesture
+            ================================================== */
             var swipeStatus = function(event, phase, direction, distance) {
                 if (autoplayTimeout) {
                     clearTimeout(autoplayTimeout);
@@ -137,12 +115,15 @@
                     }
                 }            
             };
+            // Check if touch is supported and if the touchSwipe library has been loaded
             if (typeof Modernizr != 'undefined' && Modernizr.touch && $.isFunction($.fn.swipe)) {
                 options.showDirectionNav = false;
                 slider.swipe({ triggerOnTouchEnd:false, swipeStatus:swipeStatus, allowPageScroll:'vertical'});
             }
+            
                         
-            // Direction Nav
+            /* Direction Navigation
+            ================================================== */
             if (options.showDirectionNav) {
                 slider.append('<a href="#" class="muPrev">' + options.prevText + '</a>');
                 slider.append('<a href="#" class="muNext">' + options.nextText + '</a>');
@@ -179,7 +160,9 @@
                 });
             }
             
-            // Control Nav
+            
+            /* Control Navigation
+            ================================================== */
             if (options.showControlNav) {
                 slider.append('<ul class="muControl"></ul>');
                 sliderControl = slider.find('.muControl');
@@ -195,7 +178,9 @@
                 });
             }
             
-            // Autoplay
+            
+            /* Autoplay
+            ================================================== */
             if (options.autoplay) {
                 var autoplaySlider = function(){
                     if (currentIndex + 1 < slidesCount) {
@@ -207,8 +192,28 @@
                 };
                 autoplayTimeout = setTimeout(autoplaySlider, options.autoplaySpeed);
             }
+            
                     
-            // Resize interval
+            /* Resizer
+            ================================================== */
+            var resize = function(){
+                sliderWidth = slider.width();
+                // Position the slider on the current item
+                strip.css({
+                    left: -currentIndex * sliderWidth,
+                    width: sliderWidth * slidesCount
+                });
+                slides.css({
+                    width: sliderWidth
+                });
+                // Reset the slider height
+                var slide = $(slides[currentIndex]);
+                var img = slide.find('img');
+                slider.css({
+                    height: img.height()
+                });            
+            };
+            // Check if the slider has been resized
             var checkSliderSize = function() {
                 if (sliderWidth != slider.width()) {
                     resize();
@@ -217,7 +222,25 @@
             };
             setTimeout(checkSliderSize, resizeInterval);
             
-            // Init
+            
+            /* Init
+            ================================================== */
+            // Default CSS
+            slider.css({
+                position: 'relative',
+                overflow: 'hidden'
+            });
+            strip.css({
+                position: 'absolute',
+                height: '100%'
+            });
+            slides.css({
+                position: 'relative',
+                float: 'left',
+                height: '100%'
+            });
+            
+            // Load first slide
             loadSlide(0);
             
         });
