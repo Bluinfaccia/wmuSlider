@@ -50,7 +50,7 @@
                 
                 // Loading
                 if (options.showLoading && img.attr('data-src')) {
-                    slide.append('<span class="muLoading">' + options.loadingText + '</span>');
+                    slide.append('<span class="wmuLoading">' + options.loadingText + '</span>');
                 }    
                             
                 // Slide        
@@ -65,7 +65,7 @@
                                 // Animate the slider height to the image height
                                 slider.animate({ height:img.height() }, options.transitionSpeed, function() {
                                     img.animate({ opacity:1 }, options.transitionSpeed, function() {
-                                        $('.muLoading').remove();
+                                        $('.wmuLoading').remove();
                                     });
                                 });
                             });
@@ -79,9 +79,9 @@
                     if (sliderControl) {
                         sliderControl.find('a').each(function(j) {
                             if(j == i) {
-                                $(this).addClass('muActive');
+                                $(this).addClass('wmuActive');
                             } else {
-                                $(this).removeClass('muActive');
+                                $(this).removeClass('wmuActive');
                             }
                         });
                     }
@@ -95,8 +95,7 @@
             var swipeStatus = function(event, phase, direction, distance) {
                 if (autoplayTimeout) {
                     clearTimeout(autoplayTimeout);
-                }
-                
+                }              
                 if(phase == 'move' && (direction == 'left' || direction == 'right')) {
                     if (direction == 'right') {
                         strip.css('left', (-currentIndex * sliderWidth) + distance);
@@ -125,10 +124,10 @@
             /* Direction Navigation
             ================================================== */
             if (options.showDirectionNav) {
-                slider.append('<a href="#" class="muPrev">' + options.prevText + '</a>');
-                slider.append('<a href="#" class="muNext">' + options.nextText + '</a>');
-                prev = slider.find('.muPrev').hide();
-                next = slider.find('.muNext').hide();
+                slider.append('<a href="#" class="wmuPrev">' + options.prevText + '</a>');
+                slider.append('<a href="#" class="wmuNext">' + options.nextText + '</a>');
+                prev = slider.find('.wmuPrev').hide();
+                next = slider.find('.wmuNext').hide();
                 slider.hover(function() {
                     prev.show();
                     next.show();
@@ -164,8 +163,8 @@
             /* Control Navigation
             ================================================== */
             if (options.showControlNav) {
-                slider.append('<ul class="muControl"></ul>');
-                sliderControl = slider.find('.muControl');
+                slider.append('<ul class="wmuControl"></ul>');
+                sliderControl = slider.find('.wmuControl');
                 $.each(slides, function(i) {
                     sliderControl.append('<li><a href="#">' + i + '</a></li>');
                     sliderControl.find('a:eq(' + i + ')').click(function(e) {    
@@ -241,6 +240,7 @@
             });
             
             // Load first slide
+            resize();
             loadSlide(0);
             
         });
