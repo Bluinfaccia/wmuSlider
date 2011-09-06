@@ -9,16 +9,16 @@
 <!-- BEGIN head-->
 <head>
 
-	<!-- Meta Tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-	
-	<!-- Title -->
-	<title>wmuSlider Demo</title>
-	
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
-			
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    
+    <!-- Title -->
+    <title>wmuSlider Demo</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
+            
 <!-- END head -->
 </head>
 
@@ -27,23 +27,30 @@
 
     <!-- BEGIN .wmuSlider -->
     <div class="wmuSlider">
-    	
-    	<ul>
-    		<li><img data-src="images/sunrise.jpg" alt="" width="940" height="100%" /></li>
-    		<li><img data-src="images/sunset.jpg" alt="" width="940" height="100%" /></li>
-    		<li><img data-src="images/dawn.jpg" alt="" width="940" height="100%" /></li>
-    	</ul>
-    	
+        
+        <ul>
+            <li><img data-src="images/sunrise.jpg" alt="" width="940" height="100%" /></li>
+            <li><img data-src="images/sunset.jpg" alt="" width="940" height="100%" /></li>
+            <li><img data-src="images/dawn.jpg" alt="" width="940" height="100%" /></li>
+        </ul>
+        
     <!-- END .wmuSlider -->
     </div>
-				
-	<!-- Scripts -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	<script src="../jquery.wmuslider.js"></script>
-	<script>
-	   $('.wmuSlider').wmuSlider();
-	</script>
-  	
+                
+    <!-- Scripts -->
+    <script type="text/javascript" src="libs/modernizr.custom.min.js"></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="../jquery.wmuslider.js"></script>
+    <script>
+        Modernizr.load({
+            test: Modernizr.touch,
+            yep: 'libs/jquery.touchSwipe-1.2.4.min.js',
+            complete: function() {
+                $('.wmuSlider').wmuSlider({ autoplay:true });
+            }
+        });    
+    </script>
+      
 <!-- END body -->
 </body>
 <!-- END html -->
