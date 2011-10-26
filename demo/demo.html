@@ -26,29 +26,125 @@
 <body>
 
     <!-- BEGIN .wmuSlider -->
-    <div class="wmuSlider">
+    <div class="wmuSlider example1">
         
-        <ul>
-            <li><img data-src="images/sunrise.jpg" alt="" width="940" height="100%" /></li>
-            <li><img data-src="images/sunset.jpg" alt="" width="940" height="100%" /></li>
-            <li><img data-src="images/dawn.jpg" alt="" width="940" height="100%" /></li>
-        </ul>
-        
+        <div class="wmuSliderWrapper">
+            <article>
+                <img width="612" height="612" src="http://farm6.static.flickr.com/5295/5476032712_6441c7e316_z.jpg" />
+            </article>
+    
+            <article>
+                <img width="612" height="612" src="http://farm6.static.flickr.com/5176/5456963815_042d9c3ea0_z.jpg" />
+            </article>
+    
+            <article>
+                <img width="612" height="612" src="http://farm6.static.flickr.com/5201/5296457034_5688b25c15_z.jpg" />
+            </article>
+
+            <article>
+                <img width="612" height="612" src="http://farm6.static.flickr.com/5245/5291874922_35ca47cc3d_z.jpg" />
+            </article>
+        </div>
+                        
     <!-- END .wmuSlider -->
     </div>
-                
+
+    <!-- BEGIN .wmuSlider -->
+    <div class="wmuSlider example2">
+        
+        <div class="wmuSliderWrapper">
+            <article>
+                <img width="612" height="612" src="http://farm6.static.flickr.com/5295/5476032712_6441c7e316_z.jpg" />
+            </article>
+    
+            <article>
+                <img width="612" height="612" src="http://farm6.static.flickr.com/5176/5456963815_042d9c3ea0_z.jpg" />
+            </article>
+    
+            <article>
+                <img width="612" height="612" src="http://farm6.static.flickr.com/5201/5296457034_5688b25c15_z.jpg" />
+            </article>
+
+            <article>
+                <img width="612" height="612" src="http://farm6.static.flickr.com/5245/5291874922_35ca47cc3d_z.jpg" />
+            </article>
+        </div>
+                        
+    <!-- END .wmuSlider -->
+    </div>
+
+    <!-- BEGIN .wmuSlider -->
+    <div class="wmuSlider example3">
+        
+        <div class="wmuSliderWrapper">
+            <article>
+                <img width="612" height="612" src="http://farm6.static.flickr.com/5295/5476032712_6441c7e316_z.jpg" />
+            </article>
+    
+            <article>
+                <img width="612" height="612" src="http://farm6.static.flickr.com/5176/5456963815_042d9c3ea0_z.jpg" />
+            </article>
+    
+            <article>
+                <img width="612" height="612" src="http://farm6.static.flickr.com/5201/5296457034_5688b25c15_z.jpg" />
+            </article>
+
+            <article>
+                <img width="612" height="612" src="http://farm6.static.flickr.com/5245/5291874922_35ca47cc3d_z.jpg" />
+            </article>
+        </div>
+                        
+    <!-- END .wmuSlider -->
+    </div>
+
+    <!-- BEGIN .wmuGallery -->
+    <div class="wmuGallery example4">
+    
+        <div class="wmuSlider">        
+            <div class="wmuSliderWrapper">
+                <article>
+                    <img width="75" height="75" src="http://farm6.static.flickr.com/5295/5476032712_6441c7e316_s.jpg" data-src-full="http://farm6.static.flickr.com/5295/5476032712_6441c7e316_z.jpg" />
+                </article>
+        
+                <article>
+                    <img width="75" height="75" src="http://farm6.static.flickr.com/5176/5456963815_042d9c3ea0_s.jpg" data-src-full="http://farm6.static.flickr.com/5176/5456963815_042d9c3ea0_z.jpg" />
+                </article>
+        
+                <article>
+                    <img width="75" height="75" src="http://farm6.static.flickr.com/5201/5296457034_5688b25c15_s.jpg" data-src-full="http://farm6.static.flickr.com/5201/5296457034_5688b25c15_z.jpg" />
+                </article>
+
+                <article>
+                    <img width="75" height="75" src="http://farm6.static.flickr.com/5245/5291874922_35ca47cc3d_s.jpg" data-src-full="http://farm6.static.flickr.com/5245/5291874922_35ca47cc3d_z.jpg" />
+                </article>
+            </div>
+        </div>  
+                     
+    <!-- END .wmuGallery -->
+    </div>
+                            
     <!-- Scripts -->
     <script type="text/javascript" src="libs/modernizr.custom.min.js"></script>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-    <script src="../jquery.wmuslider.js"></script>
+    <script src="../jquery.wmuSlider.js"></script>
+    <script src="../jquery.wmuGallery.js"></script>
     <script>
-        Modernizr.load({
-            test: Modernizr.touch,
-            yep: 'libs/jquery.touchSwipe-1.2.4.min.js',
-            complete: function() {
-                $('.wmuSlider').wmuSlider({ autoplay:true });
-            }
-        });    
+        $('.example1').wmuSlider({
+            touch: Modernizr.touch
+        });  
+        $('.example2').wmuSlider({
+            touch: Modernizr.touch,
+            animation: 'slide'
+        });   
+        $('.example3').wmuSlider({
+            touch: Modernizr.touch,
+            animation: 'slide',
+            items: 2
+        });
+        $('.example4').wmuGallery({
+            touch: Modernizr.touch,
+            items: 4
+        });
     </script>
       
 <!-- END body -->
