@@ -52,7 +52,7 @@
                 
                 if (!$.isFunction($.fn.wmuSlider)) {
                     $.ajax({
-                        url: 'jquery.wmuSlider.js',
+                        url: 'jquery.wmuSlider.min.js',
                         async: false
                     });
                 }   
