@@ -124,27 +124,25 @@
     </div>
                             
     <!-- Scripts -->
-    <script type="text/javascript" src="libs/modernizr.custom.min.js"></script>    
+    <script type="text/javascript" src="modernizr.custom.min.js"></script>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script src="../jquery.wmuSlider.js"></script>
     <script src="../jquery.wmuGallery.js"></script>
     <script>
-        $('.example1').wmuSlider({
-            touch: Modernizr.touch
-        });  
+        $('.example1').wmuSlider(); 
+         
         $('.example2').wmuSlider({
-            touch: Modernizr.touch,
+            touch: true,
             animation: 'slide'
         });   
+        
         $('.example3').wmuSlider({
             touch: Modernizr.touch,
             animation: 'slide',
             items: 2
         });
-        $('.example4').wmuGallery({
-            touch: Modernizr.touch,
-            items: 4
-        });
+        
+        $('.example4').wmuGallery();
     </script>
       
 <!-- END body -->

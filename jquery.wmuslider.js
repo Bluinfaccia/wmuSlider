@@ -1,5 +1,5 @@
 /*!
- * jQuery wmuSlider v2.0
+ * jQuery wmuSlider v2.1
  * 
  * Copyright (c) 2011 Brice Lechatellier
  * http://brice.lechatellier.com/
@@ -42,6 +42,7 @@
             var paginationControl;
             var isAnimating;
             
+            
             /* Load Slide
             ================================================== */ 
             var loadSlide = function(index, infinite, touch) {
@@ -51,7 +52,7 @@
                 isAnimating = true;
                 currentIndex = index;
                 var slide = $(slides[index]);
-                $this.css('height', slide.innerHeight());
+                $this.animate({ height: slide.innerHeight() });
                 if (options.animation == 'fade') {
                     slides.css({
                         position: 'absolute',
@@ -162,7 +163,7 @@
             ================================================== */ 
             var resize = function() {
                 var slide = $(slides[currentIndex]);
-                $this.css('height', slide.innerHeight());
+                $this.animate({ height: slide.innerHeight() });
                 if (options.animation == 'slide') {
                     slides.css({
                         width: $this.width() / options.items
@@ -229,11 +230,11 @@
             /* Init Slider
             ================================================== */ 
             var init = function() {
-                // Animation Setup
                 var slide = $(slides[currentIndex]);
                 var img = slide.find('img');
                 img.load(function() {
-                    $this.css('height', slide.innerHeight());
+                    wrapper.show();
+                    $this.animate({ height: slide.innerHeight() });
                 });
                 if (options.animation == 'fade') {
                     slides.css({
@@ -241,12 +242,12 @@
                         width: '100%',
                         opacity: 0
                     });
-                    $(slides[currentIndex]).css('position', 'relative')
-                    wrapper.show();
+                    $(slides[currentIndex]).css('position', 'relative');
                 } else if (options.animation == 'slide') {
-                    slides.css({
-                        float: 'left',
-                    });
+                    if (options.items > slidesCount) {
+                        options.items = slidesCount;
+                    }
+                    slides.css('float', 'left');                    
                     slides.each(function(i){
                         var slide = $(this);
                         slide.attr('data-index', i);
@@ -255,8 +256,6 @@
                         wrapper.append($(slides[i]).clone());
                     }
                     slides = $this.find(options.slide);
-                    
-                    wrapper.show();
                 }
                 resize();
                 
