@@ -1,5 +1,5 @@
 /*!
- * jQuery wmuGallery v1.0
+ * jQuery wmuGallery v1.1
  * 
  * Copyright (c) 2011 Brice Lechatellier
  * http://brice.lechatellier.com/
@@ -15,6 +15,7 @@
         ================================================== */       
         var defaults = {
             position: 'before',
+            animationDuration: 600,
             touch: false,
             slide: 'article',
             items: 5
@@ -35,15 +36,18 @@
             ================================================== */  
             var loadImage = function(i) {
                 var imageURI = $(slides[i]).find('img').attr('data-src-full');
-                image.html('<img src="' + imageURI + '" />');
+                if (!image) {
+                    image = $('<img src="' + imageURI + '" />');
+                    gallery.append(image);
+                } else {
+                    image.attr('src', imageURI);
+                }
             };
 
             /* Init
             ================================================== */
             var init = function() {
-                image = $('<figure></figure>');
                 gallery = $('<div class="wmuGalleryImage"></div>');
-                gallery.append(image);
                 if (options.position == 'before') {
                     $this.prepend(gallery);
                 } else if  (options.position == 'after') {
@@ -78,6 +82,7 @@
                     }).wmuSlider({
                         touch: options.touch,
                         animation: 'slide',
+                        animationDuration: options.animationDuration,
                         slide: options.slide,
                         items: options.items
                     });
